@@ -1,6 +1,6 @@
 {
   "name": "osa2",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Interact with Apple's Open Scripting Architecture",
   "main": "index.js",
   "repository": "https://github.com/wtfaremyinitials/osa2.git",
@@ -12,5 +12,7 @@
   "devDependencies": {
     "ava": "^0.19.1"
   },
-  "engines": { "node": ">=5.12" }
+  "engines": {
+    "node": ">=5.12"
+  }
 }
