@@ -8,6 +8,7 @@ osa2
 > Interact with Apple's Open Scripting Architecture from node.js
 
 // TODO: Explain what this is
+
 // TODO: Plug `jxa`
 
 Installation
@@ -25,29 +26,27 @@ Get the currently playing iTunes track
 ```js
 var osa = require('osa2')
 
-osa(() => {
+var track = osa(() => {
     Application('iTunes').currentTrack.name()
-})().then(track => {
-    console.log(`Now playing ${track}.`)
-}).catch(() => {
-    console.log(`No iTunes music playing.`)
 })
+
+track().then(console.log).catch(console.error)
 ```
 
-Play a song on iTunes
+Show an alert
 
 ```js
 var osa = require('osa2')
 
-function play(songtitle) {
-    return osa(title => {
-        var app = Application('iTunes')
-        var track = app.playlists[0].tracks.whose({name:{_contains:title}})[0]
-        track.play()
-    })(songtitle)
+function alert(message) {
+    return osa(text => {
+        var app = Application.currentApplication()
+        app.includeStandardAdditions = true
+        app.displayAlert(text)
+    })(message)
 }
 
-play('Pay No Mind')
+alert('Hello World')
 ```
 
 API
@@ -55,7 +54,7 @@ API
 
 ### Execute code in the JavaScript for Automation environment
 
-`osa(function(T)) -> (function(T) -> Promise<R>)`
+`osa(function) -> function`
 
 Wraps `function` to be run inside Apple's JavaScript for Automation environment.
 
@@ -63,9 +62,7 @@ Wraps `function` to be run inside Apple's JavaScript for Automation environment.
 
 Type: `function`
 
-The code to be run inside the JXA environment.
-
-**NOTE:** `function` cannot close over variables in a parent's scope.
+The code to be run inside the JXA environment. ***NOTE:*** `function` cannot close over variables in a parent's scope.
 Pass data as arguments explicitly instead.
 
 **return**
@@ -77,9 +74,9 @@ the code is run inside the JXA environment. This is done asynchronously,
 therefore promise is returned.
 
 ```js
-var fn = osa(name => `Hello from JXA, ${name}!`)
+var greet = osa(name => `Hello from JXA, ${name}!`)
 
-fn('Will').then(text => {
+greet('Will').then(text => {
     console.log(text) // Hello from JXA, Will!
 })
 ```
