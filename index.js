@@ -7,7 +7,7 @@ function osa(fn) {
         var args = JSON.parse($.getenv('OSA_ARGS'))
         var out  = fn.apply(null, args)
         JSON.stringify(out)
-    ` 
+    `
 
     var osafn = function(...args) {
         return new Promise((res, rej) => {
@@ -18,7 +18,7 @@ function osa(fn) {
             }, (err, stdout, stderr) => {
                 if (err) {
                     return rej(err)
-                } 
+                }
 
                 if (stderr) {
                     console.log(stderr)
@@ -33,7 +33,7 @@ function osa(fn) {
                 } catch(e) {
                     rej(e)
                 }
-            }) 
+            })
             child.stdin.write(code)
             child.stdin.end()
         })

@@ -19,7 +19,7 @@ var osacb = function(fn) {
             res => cb(null, res),
             err => cb(err, null)
         )
-    } 
+    }
 }
 
 module.exports = osacb
