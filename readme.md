@@ -27,7 +27,7 @@ Get the currently playing iTunes track
 var osa = require('osa2')
 
 var track = osa(() => {
-    Application('iTunes').currentTrack.name()
+    return Application('iTunes').currentTrack.name()
 })
 
 track().then(console.log).catch(console.error)
