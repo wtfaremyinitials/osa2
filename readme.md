@@ -7,9 +7,10 @@ osa2
 
 > Interact with Apple's Open Scripting Architecture from node.js
 
-// TODO: Explain what this is
+This module provides a Promise interface to macOS's automation and scripting APIs.
 
-// TODO: Plug `jxa`
+`osa2` is intended for use in libraries or full applications. If you're looking
+to write simple automation scripts, check out [jxa](https://www.npmjs.com/package/jxa).
 
 Installation
 ===
