@@ -22,7 +22,7 @@ test('multiline', async t => {
 })
 
 test('undefined return', async t => {
-    var fn = osa(()=>{})
+    var fn = osa(() => {})
     t.is(await fn(), undefined)
 })
 

@@ -11,29 +11,34 @@ function osa(fn) {
 
     var osafn = function(...args) {
         return new Promise((res, rej) => {
-            var child = exec('/usr/bin/osascript', ['-l', 'JavaScript'], {
-                env: {
-                    OSA_ARGS: JSON.stringify(args)
-                }
-            }, (err, stdout, stderr) => {
-                if (err) {
-                    return rej(err)
-                }
+            var child = exec(
+                '/usr/bin/osascript',
+                ['-l', 'JavaScript'],
+                {
+                    env: {
+                        OSA_ARGS: JSON.stringify(args),
+                    },
+                },
+                (err, stdout, stderr) => {
+                    if (err) {
+                        return rej(err)
+                    }
 
-                if (stderr) {
-                    console.log(stderr)
-                }
+                    if (stderr) {
+                        console.log(stderr)
+                    }
 
-                if (!stdout) {
-                    res(undefined)
-                }
+                    if (!stdout) {
+                        res(undefined)
+                    }
 
-                try {
-                    res(JSON.parse(stdout.toString()))
-                } catch(e) {
-                    rej(e)
+                    try {
+                        res(JSON.parse(stdout.toString()))
+                    } catch (e) {
+                        rej(e)
+                    }
                 }
-            })
+            )
             child.stdin.write(code)
             child.stdin.end()
         })

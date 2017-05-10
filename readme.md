@@ -4,6 +4,7 @@ osa2
 ![](https://img.shields.io/npm/dm/osa2.svg)
 ![](https://img.shields.io/npm/v/osa2.svg)
 ![](https://img.shields.io/npm/l/osa2.svg)
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 > Interact with Apple's Open Scripting Architecture from node.js
 
