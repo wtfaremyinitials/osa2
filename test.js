@@ -21,6 +21,11 @@ test('multiline', async t => {
     t.is(await fn(), 'foobar')
 })
 
+test('correct return value', async t => {
+    var fn = osa(() => 123.47)
+    t.is(await fn(), 123.47)
+})
+
 test('undefined return', async t => {
     var fn = osa(() => {})
     t.is(await fn(), undefined)
