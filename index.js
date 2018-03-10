@@ -1,13 +1,14 @@
 var exec = require('child_process').execFile
+var transform = require('babel-core').transform
 
 function osa(fn) {
-    var code = `
+    var code = transform(`
         ObjC.import('stdlib')
         var fn   = (${fn.toString()})
         var args = JSON.parse($.getenv('OSA_ARGS'))
         var out  = fn.apply(null, args)
         JSON.stringify(out)
-    `
+    `, { presets: ['env'] }).code
 
     var osafn = function(...args) {
         return new Promise((res, rej) => {
